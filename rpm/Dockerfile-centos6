@@ -1,0 +1,14 @@
+FROM  italiangrid/build-centos6
+
+RUN yum -y install pkgconfig \
+  curl-devel \
+  libxml2-devel \
+  readline-devel \
+  ncurses-devel
+
+USER build
+ADD Makefile ./storm-xmlrcp-c.src.spec.in /home/build/
+
+WORKDIR /home/build
+
+CMD /bin/bash -c make
